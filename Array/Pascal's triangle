@@ -1,0 +1,40 @@
+import java.util.*;
+public class Main
+{
+    public static List<List<Integer>> generate(int n)
+    {
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        List<Integer> currRow, prev = null;
+        
+        for(int i=0; i<n; i++)
+        {
+            currRow = new ArrayList<Integer>();
+            for(int j=0; j<=i; j++)
+            {
+                if(j==0 || j==i)
+                currRow.add(1);
+                else
+                currRow.add(prev.get(j-1)+prev.get(j));
+            }
+            prev = currRow;
+            res.add(currRow);
+        }
+        
+        return res;
+    }
+    
+	public static void main(String[] args) {
+		int n = 5;
+		List<List<Integer>> ans = generate(n);
+		
+		for(int i=0; i<n; i++)
+		{
+		    for(int j=0; j<ans.get(i).size(); j++)
+		    {
+		        System.out.print(ans.get(i).get(j)+" ");
+		    }
+		    System.out.println();
+		}
+	}
+}
+
