@@ -1,0 +1,47 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class Solution 
+{
+	public static ArrayList<Integer> nextPermutation(ArrayList<Integer> permutation) 
+	{
+		// Write your code here.
+        int n = permutation.size();
+        if(n<=1)
+        return permutation;
+        
+        int ind1 = n-2;
+        while(ind1>=0 && permutation.get(ind1)>=permutation.get(ind1+1))
+            ind1--;
+        
+        if(ind1>=0)
+        {
+            int ind2 = n-1;
+            while(permutation.get(ind2)<=permutation.get(ind1))
+                ind2--;
+            
+            swap(permutation,ind1,ind2);
+        }
+        reverse(permutation,ind1+1,n-1);
+        return permutation;
+	}
+    
+    public static void reverse(ArrayList<Integer> permutation, int i, int j)
+    {
+        while(i<j)
+        {
+            swap(permutation,i,j);
+            i++;
+            j--;
+        }
+    }
+    
+    public static void swap(ArrayList<Integer> permutation, int i, int j)
+    {
+        int temp = permutation.get(i);
+        permutation.set(i,permutation.get(j));
+        permutation.set(j,temp);
+    }
+}
