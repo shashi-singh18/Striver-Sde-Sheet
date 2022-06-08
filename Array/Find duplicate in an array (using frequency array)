@@ -1,0 +1,21 @@
+import java.util.*;
+class Main{
+    public static int findDuplicate(int[] nums) {
+        int n = nums.length;
+        int[] freq = new int[n+1];
+        for(int i=0; i<n; i++)
+        {
+            if(freq[nums[i]]==0)
+            freq[nums[i]] += 1;
+            else 
+            return nums[i];
+        }
+        return 0;
+    }
+    
+    public static void main(String args[]) {
+        int arr[] = {2,5,9,6,9,3,4,8,7,1};
+        System.out.println(findDuplicate(arr));
+    }
+}
+        
